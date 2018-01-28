@@ -29,6 +29,21 @@ Install via [Alcatraz](http://alcatraz.io). Just search for “EditorConfig”.
 ## How this is different from ClangFormat
 ClangFormat is a much more powerful tool, but it can be overkill for simply changing indentation settings.
 
+
+## After updating Xcode
+
+The plugins have a UUID to tell them which version of Xcode they are compatible with. We can get
+the current Xcode UUID using:
+
+    defaults read /Applications/Xcode.app/Contents/Info DVTPlugInCompatibilityUUID
+
+We can update the plugin without recompiling using:
+
+    defaults write ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins/EditorConfig.xcplugin/Contents/Info \
+        DVTPlugInCompatibilityUUIDs -array-add $(defaults read /Applications/Xcode.app/Contents/Info DVTPlugInCompatibilityUUID)
+
+However, Xcode 8 ended plugins in favour of extensions.
+
 ## Contact
 [marcosero.com](http://www.marcosero.com)  
 [@marcosero](http://twitter.com/marcosero)
